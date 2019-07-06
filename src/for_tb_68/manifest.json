@@ -9,14 +9,8 @@
     "myapi": {
       "schema": "schema.json",
       "parent": {
-        "scopes": [
-          "addon_parent"
-        ],
-        "paths": [
-          [
-            "myapi"
-          ]
-        ],
+        "scopes": ["addon_parent"],
+        "paths": [["myapi"]],
         "script": "implementation.js"
       }
     }

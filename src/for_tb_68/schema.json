@@ -14,6 +14,20 @@
             "description": "Who to say hello to."
           }
         ]
+      },
+      {
+        "name": "disableFolderTreeDrag",
+        "type": "function",
+        "description": "Disable dragstart on the folder tree",
+        "async": false,
+        "parameters": []
+      },
+      {
+        "name": "enableFolderTreeDrag",
+        "type": "function",
+        "description": "Enable dragstart on the folder tree",
+        "async": false,
+        "parameters": []
       }
     ],
     "events": [
