@@ -3,19 +3,6 @@
     "namespace": "myapi",
     "functions": [
       {
-        "name": "sayHello",
-        "type": "function",
-        "description": "Says hello to the user.",
-        "async": true,
-        "parameters": [
-          {
-            "name": "name",
-            "type": "string",
-            "description": "Who to say hello to."
-          }
-        ]
-      },
-      {
         "name": "disableFolderTreeDrag",
         "type": "function",
         "description": "Disable dragstart on the folder tree",

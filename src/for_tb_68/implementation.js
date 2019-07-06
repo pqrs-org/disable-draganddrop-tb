@@ -6,8 +6,6 @@ var { ExtensionSupport } = ChromeUtils.import(
   'resource:///modules/ExtensionSupport.jsm'
 );
 
-var { Services } = ChromeUtils.import('resource://gre/modules/Services.jsm');
-
 const addonID = 'disable_dnd_tb@pqrs.org';
 
 // This is the important part. It implements the functions and events defined in schema.json.
@@ -19,15 +17,7 @@ var myapi = class extends ExtensionCommon.ExtensionAPI {
     };
 
     return {
-      // Again, this key must have the same name.
       myapi: {
-        // A function.
-        sayHello: async function(name) {
-          Services.wm
-            .getMostRecentWindow('mail:3pane')
-            .alert('Hello ' + name + '!');
-        },
-
         disableFolderTreeDrag: function() {
           ExtensionSupport.registerWindowListener(addonID, {
             chromeURLs: ['chrome://messenger/content/messenger.xul'],
@@ -52,26 +42,7 @@ var myapi = class extends ExtensionCommon.ExtensionAPI {
             }
           }
           ExtensionSupport.unregisterWindowListener(addonID);
-        },
-
-        // An event. Most of this is boilerplate you don't need to worry about, just copy it.
-        onToolbarClick: new ExtensionCommon.EventManager({
-          context,
-          name: 'myapi.onToolbarClick',
-          // In this function we add listeners for any events we want to listen to, and return a
-          // function that removes those listeners. To have the event fire in your extension,
-          // call fire.async.
-          register(fire) {
-            function callback(event, id, x, y) {
-              return fire.async(id, x, y);
-            }
-
-            windowListener.add(callback);
-            return function() {
-              windowListener.remove(callback);
-            };
-          }
-        }).api()
+        }
       }
     };
   }
