@@ -1,8 +1,7 @@
 VERSION_TB_60 = `ruby $(PWD)/tools/get-version1.rb $(PWD)/src/for_tb_60/install.rdf`
 VERSION_TB_68 = `ruby $(PWD)/tools/get-version2.rb $(PWD)/src/for_tb_68/manifest.json`
 
-all:
-	@mkdir -p xpi
+all: for_tb_68
 
 for_tb_60:
 	@mkdir -p xpi
