@@ -1,6 +1,6 @@
 [
   {
-    "namespace": "myapi",
+    "namespace": "pqrsorgApi",
     "functions": [
       {
         "name": "disableFolderTreeDrag",

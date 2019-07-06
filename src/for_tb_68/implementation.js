@@ -8,16 +8,14 @@ var { ExtensionSupport } = ChromeUtils.import(
 
 const addonID = 'disable_dnd_tb@pqrs.org';
 
-// This is the important part. It implements the functions and events defined in schema.json.
-// The variable must have the same name you've been using so far, "myapi" in this case.
-var myapi = class extends ExtensionCommon.ExtensionAPI {
+var pqrsorgApi = class extends ExtensionCommon.ExtensionAPI {
   getAPI(context) {
     const handleEvent = event => {
       event.stopPropagation();
     };
 
     return {
-      myapi: {
+      pqrsorgApi: {
         disableFolderTreeDrag: function() {
           ExtensionSupport.registerWindowListener(addonID, {
             chromeURLs: ['chrome://messenger/content/messenger.xul'],

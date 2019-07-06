@@ -6,11 +6,11 @@
     "scripts": ["background.js"]
   },
   "experiment_apis": {
-    "myapi": {
+    "pqrsorgApi": {
       "schema": "schema.json",
       "parent": {
         "scopes": ["addon_parent"],
-        "paths": [["myapi"]],
+        "paths": [["pqrsorgApi"]],
         "script": "implementation.js"
       }
     }

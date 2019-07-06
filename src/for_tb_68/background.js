@@ -1,1 +1,1 @@
-browser.myapi.disableFolderTreeDrag();
+browser.pqrsorgApi.disableFolderTreeDrag();
