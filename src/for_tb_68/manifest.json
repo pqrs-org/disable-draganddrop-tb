@@ -1,7 +1,14 @@
 {
   "manifest_version": 2,
-  "name": "Extension containing an experimental API",
-  "version": "1",
+  "applications": {
+    "gecko": {
+      "id": "myextension@sample.extensions.thunderbird.net",
+      "strict_min_version": "68.0"
+    }
+  },
+  "name": "Disable DragAndDrop (Thunderbird)",
+  "description": "Disable drag and drop on the folder tree in order to prevent unintended folder movement.",
+  "version": "4.0.0",
   "background": {
     "scripts": ["background.js"]
   },
