@@ -1,5 +1,12 @@
 # Changelog
 
+## v4.2.0
+
+-   📅 Release date
+    -   Oct 25, 2019
+-   ⚡️ Improvements
+    -   Updated home page URL.
+
 ## v4.1.0
 
 -   📅 Release date
