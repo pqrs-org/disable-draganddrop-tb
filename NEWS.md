@@ -1,6 +1,6 @@
 # Changelog
 
-## v4.2.0
+## v4.3.0
 
 -   📅 Release date
     -   Oct 25, 2019
