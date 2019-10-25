@@ -2,6 +2,6 @@
 
 # Disable DragAndDrop
 
-A Thunderbird extension which disables drag and drop in the folder pane. This extension prevents unintended folder movement.
+A Thunderbird add-on which disables drag and drop on the folder tree in order to prevent unintended folder movement.
 
-https://pqrs.org/thunderbird/extensions/disable_dnd_tb/
+<https://disable-draganddrop-tb.pqrs.org>

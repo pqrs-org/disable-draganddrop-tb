@@ -9,7 +9,7 @@
     <em:version>3.2.0</em:version>
     <em:description>Disable DragAndDrop (Thunderbird)</em:description>
     <em:creator>Takayama Fumihiko</em:creator>
-    <em:homepageURL>https://pqrs.org/thunderbird/extensions/disable_dnd_tb/</em:homepageURL>
+    <em:homepageURL>https://disable-draganddrop-tb.pqrs.org</em:homepageURL>
 
     <!-- thunderbird -->
     <em:targetApplication>
