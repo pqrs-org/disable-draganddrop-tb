@@ -1,4 +1,4 @@
-[![License](https://img.shields.io/badge/license-Public%20Domain-blue.svg)](https://github.com/tekezo/disable_dnd_tb/blob/master/LICENSE.md)
+[![License](https://img.shields.io/badge/license-Public%20Domain-blue.svg)](https://github.com/pqrs-org/disable-draganddrop-tb/blob/master/LICENSE.md)
 
 # Disable DragAndDrop
 
