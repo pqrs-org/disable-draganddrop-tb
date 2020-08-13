@@ -1,0 +1,12 @@
+[
+  {
+    "namespace": "org_pqrs_disable_dnd_tb_v2",
+    "functions": [
+      {
+        "name": "init",
+        "type": "function",
+        "parameters": []
+      }
+    ]
+  }
+]
