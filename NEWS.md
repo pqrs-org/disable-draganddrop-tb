@@ -1,5 +1,12 @@
 # Changelog
 
+## Disable DragAndDrop 4.4.0
+
+-   📅 Release date
+    -   Aug 13, 2020
+-   ⚡️ Improvements
+    -   Supported Thunderbird 78.
+
 ## Disable DragAndDrop 4.3.0
 
 -   📅 Release date
