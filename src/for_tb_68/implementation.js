@@ -6,13 +6,19 @@ var { ExtensionSupport } = ChromeUtils.import(
   'resource:///modules/ExtensionSupport.jsm'
 );
 
+var promptService = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+                              .getService(Components.interfaces.nsIPromptService);
+
 var org_pqrs_disable_dnd_tb_v2 = class extends ExtensionCommon.ExtensionAPI {
   static getExtensionId() {
     return 'disable_dnd_tb_v2@pqrs.org';
   }
 
   static handleEvent(event) {
-    event.stopPropagation();
+    if (promptService.confirm(null, "Moving folder", "Do you really want to move this folder?")) {
+      event.stopPropagation();
+      return false;
+    }
   }
 
   getAPI(context) {
@@ -32,7 +38,7 @@ var org_pqrs_disable_dnd_tb_v2 = class extends ExtensionCommon.ExtensionAPI {
                 const folderTree = window.document.getElementById('folderTree');
                 if (folderTree !== null) {
                   folderTree.addEventListener(
-                    'dragstart',
+                    'drop',
                     org_pqrs_disable_dnd_tb_v2.handleEvent,
                     true
                   );
@@ -54,7 +60,7 @@ var org_pqrs_disable_dnd_tb_v2 = class extends ExtensionCommon.ExtensionAPI {
         const folderTree = window.document.getElementById('folderTree');
         if (folderTree !== null) {
           folderTree.removeEventListener(
-            'dragstart',
+            'drop',
             org_pqrs_disable_dnd_tb_v2.handleEvent,
             true
           );
