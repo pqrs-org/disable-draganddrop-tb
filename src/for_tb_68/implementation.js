@@ -17,16 +17,24 @@ this.org_pqrs_disable_dnd_tb_v2 = class extends ExtensionCommon.ExtensionAPI {
     return 'disable_dnd_tb_v2@pqrs.org';
   }
 
-  static handleEvent(event) {
-    if (
-      promptService.confirm(
-        null,
-        'Moving folder',
-        'Do you really want to move this folder?'
-      )
-    ) {
+  static handleDragStartEvent(event) {
+    if (!org_pqrs_disable_dnd_tb_v2.showPrompt) {
       event.stopPropagation();
-      return false;
+    }
+  }
+
+  static handleDropEvent(event) {
+    if (org_pqrs_disable_dnd_tb_v2.showPrompt) {
+      if (
+        promptService.confirm(
+          null,
+          'Moving folder',
+          'Do you really want to move this folder?'
+        )
+      ) {
+        event.stopPropagation();
+        return false;
+      }
     }
   }
 
@@ -47,8 +55,13 @@ this.org_pqrs_disable_dnd_tb_v2 = class extends ExtensionCommon.ExtensionAPI {
                 const folderTree = window.document.getElementById('folderTree');
                 if (folderTree !== null) {
                   folderTree.addEventListener(
+                    'dragstart',
+                    org_pqrs_disable_dnd_tb_v2.handleDragStartEvent,
+                    true
+                  );
+                  folderTree.addEventListener(
                     'drop',
-                    org_pqrs_disable_dnd_tb_v2.handleEvent,
+                    org_pqrs_disable_dnd_tb_v2.handleDropEvent,
                     true
                   );
                 }
