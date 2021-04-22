@@ -1,12 +1,14 @@
-var { ExtensionCommon } = ChromeUtils.import(
+const { ExtensionCommon } = ChromeUtils.import(
   'resource://gre/modules/ExtensionCommon.jsm'
 );
 
-var { ExtensionSupport } = ChromeUtils.import(
+const { ExtensionSupport } = ChromeUtils.import(
   'resource:///modules/ExtensionSupport.jsm'
 );
 
-var org_pqrs_disable_dnd_tb_v2 = class extends ExtensionCommon.ExtensionAPI {
+this.org_pqrs_disable_dnd_tb_v2 = class extends ExtensionCommon.ExtensionAPI {
+  static showPrompt = false;
+
   static getExtensionId() {
     return 'disable_dnd_tb_v2@pqrs.org';
   }
@@ -40,6 +42,9 @@ var org_pqrs_disable_dnd_tb_v2 = class extends ExtensionCommon.ExtensionAPI {
               },
             }
           );
+        },
+        setShowPrompt(showPrompt) {
+          org_pqrs_disable_dnd_tb_v2.showPrompt = showPrompt;
         },
       },
     };
