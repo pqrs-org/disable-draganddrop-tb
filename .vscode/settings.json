@@ -1,0 +1,5 @@
+{
+    "files.exclude": {
+        "src/for_tb_60": true
+    }
+}
