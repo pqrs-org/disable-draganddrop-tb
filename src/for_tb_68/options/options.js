@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  browser.storage.sync.get('extensionConfig').then((res) => {
+  browser.storage.sync.get().then((res) => {
     document.querySelector('#show-prompt').checked = res.showPrompt ?? false;
   });
 });
