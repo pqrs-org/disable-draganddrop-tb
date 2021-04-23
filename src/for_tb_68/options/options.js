@@ -2,7 +2,8 @@ const showPromptCheckbox = document.querySelector('#show-prompt');
 
 document.addEventListener('DOMContentLoaded', () => {
   browser.storage.local.get().then((res) => {
-    showPromptCheckbox.checked = res.showPrompt ?? false;
+    showPromptCheckbox.checked =
+      res.showPrompt !== undefined ? res.showPrompt : false;
   });
 });
 

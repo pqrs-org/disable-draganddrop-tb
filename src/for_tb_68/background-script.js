@@ -4,7 +4,9 @@
 
 // Get the stored values
 browser.storage.local.get((data) => {
-  browser.org_pqrs_disable_dnd_tb_v2.setShowPrompt(data.showPrompt ?? false);
+  browser.org_pqrs_disable_dnd_tb_v2.setShowPrompt(
+    data.showPrompt !== undefined ? data.showPrompt : false
+  );
 });
 
 // Listen for changes
