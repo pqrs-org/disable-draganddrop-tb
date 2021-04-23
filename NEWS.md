@@ -1,5 +1,12 @@
 # Changelog
 
+## Disable DragAndDrop 4.7.0
+
+-   📅 Release date
+    -   Apr 23, 2021
+-   ✨ New Features
+    -   Add an option: `Prompt for confirmation rather than completely locking down the drag and drop of folders`. (@das-peter)
+
 ## Disable DragAndDrop 4.4.0
 
 -   📅 Release date
