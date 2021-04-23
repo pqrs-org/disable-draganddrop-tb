@@ -12,3 +12,6 @@ for_tb_68:
 	@mkdir -p xpi
 	rm -f xpi/disable_dnd_tb-$(VERSION_TB_68).xpi
 	(cd src/for_tb_68 && zip -r ../../xpi/disable_dnd_tb-$(VERSION_TB_68).xpi *)
+
+lint:
+	npm run lint
