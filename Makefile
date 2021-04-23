@@ -8,7 +8,7 @@ for_tb_60:
 	rm -f xpi/disable_dnd_tb-$(VERSION_TB_60).xpi
 	(cd src/for_tb_60 && zip -r ../../xpi/disable_dnd_tb-$(VERSION_TB_60).xpi *)
 
-for_tb_68:
+for_tb_68: lint
 	@mkdir -p xpi
 	rm -f xpi/disable_dnd_tb-$(VERSION_TB_68).xpi
 	(cd src/for_tb_68 && zip -r ../../xpi/disable_dnd_tb-$(VERSION_TB_68).xpi *)
