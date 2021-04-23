@@ -1,6 +1,6 @@
 # Changelog
 
-## Disable DragAndDrop 4.7.0
+## Disable DragAndDrop 4.8.0
 
 -   📅 Release date
     -   Apr 23, 2021
