@@ -10,67 +10,58 @@ const promptService = Components.classes[
   '@mozilla.org/embedcomp/prompt-service;1'
 ].getService(Components.interfaces.nsIPromptService);
 
-this.org_pqrs_disable_dnd_tb_v2 = class extends ExtensionCommon.ExtensionAPI {
-  static showPrompt = false;
+const extensionId = 'disable_dnd_tb_v2@pqrs.org';
 
-  static getExtensionId() {
-    return 'disable_dnd_tb_v2@pqrs.org';
+let showPrompt = false;
+
+const handleDragStartEvent = (event) => {
+  if (!showPrompt) {
+    event.stopPropagation();
   }
+};
 
-  static handleDragStartEvent(event) {
-    if (!org_pqrs_disable_dnd_tb_v2.showPrompt) {
+const handleDropEvent = (event) => {
+  if (showPrompt) {
+    if (
+      promptService.confirm(
+        null,
+        'Moving folder',
+        'Do you really want to move this folder?'
+      )
+    ) {
       event.stopPropagation();
+      return false;
     }
   }
+};
 
-  static handleDropEvent(event) {
-    if (org_pqrs_disable_dnd_tb_v2.showPrompt) {
-      if (
-        promptService.confirm(
-          null,
-          'Moving folder',
-          'Do you really want to move this folder?'
-        )
-      ) {
-        event.stopPropagation();
-        return false;
-      }
-    }
-  }
-
+this.org_pqrs_disable_dnd_tb_v2 = class extends ExtensionCommon.ExtensionAPI {
   getAPI(context) {
     context.callOnClose(this);
     return {
       org_pqrs_disable_dnd_tb_v2: {
         init() {
-          ExtensionSupport.registerWindowListener(
-            org_pqrs_disable_dnd_tb_v2.getExtensionId(),
-            {
-              // Before Thunderbird 74, messenger.xhtml was messenger.xul.
-              chromeURLs: [
-                'chrome://messenger/content/messenger.xhtml',
-                'chrome://messenger/content/messenger.xul',
-              ],
-              onLoadWindow(window) {
-                const folderTree = window.document.getElementById('folderTree');
-                if (folderTree !== null) {
-                  folderTree.addEventListener(
-                    'dragstart',
-                    org_pqrs_disable_dnd_tb_v2.handleDragStartEvent,
-                    true
-                  );
-                  folderTree.addEventListener(
-                    'drop',
-                    org_pqrs_disable_dnd_tb_v2.handleDropEvent,
-                    true
-                  );
-                }
-              },
-            }
-          );
+          ExtensionSupport.registerWindowListener(extensionId, {
+            // Before Thunderbird 74, messenger.xhtml was messenger.xul.
+            chromeURLs: [
+              'chrome://messenger/content/messenger.xhtml',
+              'chrome://messenger/content/messenger.xul',
+            ],
+            onLoadWindow(window) {
+              const folderTree = window.document.getElementById('folderTree');
+              if (folderTree !== null) {
+                folderTree.addEventListener(
+                  'dragstart',
+                  handleDragStartEvent,
+                  true
+                );
+                folderTree.addEventListener('drop', handleDropEvent, true);
+              }
+            },
+          });
         },
-        setShowPrompt(showPrompt) {
-          org_pqrs_disable_dnd_tb_v2.showPrompt = showPrompt;
+        setShowPrompt(value) {
+          showPrompt = value;
         },
       },
     };
@@ -85,15 +76,14 @@ this.org_pqrs_disable_dnd_tb_v2 = class extends ExtensionCommon.ExtensionAPI {
         const folderTree = window.document.getElementById('folderTree');
         if (folderTree !== null) {
           folderTree.removeEventListener(
-            'drop',
-            org_pqrs_disable_dnd_tb_v2.handleEvent,
+            'dragstart',
+            handleDragStartEvent,
             true
           );
+          folderTree.removeEventListener('drop', handleDropEvent, true);
         }
       }
     }
-    ExtensionSupport.unregisterWindowListener(
-      org_pqrs_disable_dnd_tb_v2.getExtensionId()
-    );
+    ExtensionSupport.unregisterWindowListener(extensionId);
   }
 };

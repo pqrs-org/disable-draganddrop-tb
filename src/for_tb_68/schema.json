@@ -12,7 +12,7 @@
         "type": "function",
         "parameters": [
           {
-            "name": "showPrompt",
+            "name": "value",
             "type": "boolean"
           }
         ]
