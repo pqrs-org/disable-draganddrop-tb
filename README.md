@@ -5,3 +5,10 @@
 A Thunderbird add-on which disables drag and drop on the folder tree in order to prevent unintended folder movement.
 
 <https://disable-draganddrop-tb.pqrs.org>
+
+## How to build
+
+```shell
+npm install
+make
+```
