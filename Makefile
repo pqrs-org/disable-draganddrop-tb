@@ -15,3 +15,7 @@ for_tb_68: lint
 
 lint:
 	npm run lint
+
+clean-xpi:
+	git reset xpi
+	git clean -x -d -f xpi
