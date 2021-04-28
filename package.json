@@ -1,6 +1,5 @@
 {
   "name": "disable-draganddrop-tb",
-  "version": "4.9.0",
   "scripts": {
     "lint": "eslint src/for_tb_68"
   },
