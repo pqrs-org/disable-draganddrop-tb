@@ -12,25 +12,47 @@ const promptService = Components.classes[
 
 const extensionId = 'disable_dnd_tb_v2@pqrs.org';
 
+//
+// Configurations
+//
+
 let showPrompt = false;
+
+//
+// States
+//
+
+// When showPrompt is true, we listen `drop` event and show a prompt.
+// However, the `drop` event is also triggered by a mail message movement.
+// So, we use `isFolderDragging` variable to determine the dragged item is folder or mail.
+let isFolderDragging = false;
 
 const handleDragStartEvent = (event) => {
   if (!showPrompt) {
     event.stopPropagation();
+    return;
   }
+
+  isFolderDragging = true;
+};
+
+const handleDragEndEvent = () => {
+  isFolderDragging = false;
 };
 
 const handleDropEvent = (event) => {
-  if (showPrompt) {
-    if (
-      promptService.confirm(
-        null,
-        'Moving folder',
-        'Do you really want to move this folder?'
-      )
-    ) {
-      event.stopPropagation();
-      return false;
+  if (isFolderDragging) {
+    if (showPrompt) {
+      if (
+        promptService.confirm(
+          null,
+          'Moving folder',
+          'Do you really want to move this folder?'
+        )
+      ) {
+        event.stopPropagation();
+        return;
+      }
     }
   }
 };
@@ -53,6 +75,11 @@ this.org_pqrs_disable_dnd_tb_v2 = class extends ExtensionCommon.ExtensionAPI {
                 folderTree.addEventListener(
                   'dragstart',
                   handleDragStartEvent,
+                  true
+                );
+                folderTree.addEventListener(
+                  'dragend',
+                  handleDragEndEvent,
                   true
                 );
                 folderTree.addEventListener('drop', handleDropEvent, true);
@@ -80,6 +107,7 @@ this.org_pqrs_disable_dnd_tb_v2 = class extends ExtensionCommon.ExtensionAPI {
             handleDragStartEvent,
             true
           );
+          folderTree.removeEventListener('dragend', handleDragEndEvent, true);
           folderTree.removeEventListener('drop', handleDropEvent, true);
         }
       }
