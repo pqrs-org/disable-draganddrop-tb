@@ -6,6 +6,10 @@ const { ExtensionSupport } = ChromeUtils.import(
   'resource:///modules/ExtensionSupport.jsm'
 );
 
+const dragService = Components.classes[
+  '@mozilla.org/widget/dragservice;1'
+].getService(Components.interfaces.nsIDragService);
+
 const promptService = Components.classes[
   '@mozilla.org/embedcomp/prompt-service;1'
 ].getService(Components.interfaces.nsIPromptService);
@@ -22,34 +26,30 @@ let showPrompt = false;
 // States
 //
 
-// When showPrompt is true, we listen `drop` event and show a prompt.
-// However, the `drop` event is also triggered by a mail message movement.
-// So, we use `isFolderDragging` variable to determine the dragged item is folder or mail.
-let isFolderDragging = false;
-
 const handleDragStartEvent = (event) => {
   if (!showPrompt) {
     event.stopPropagation();
     return;
   }
-
-  isFolderDragging = true;
-};
-
-const handleDragEndEvent = () => {
-  isFolderDragging = false;
 };
 
 const handleDropEvent = (event) => {
-  if (isFolderDragging) {
+  // When showPrompt is true, we listen `drop` event and show a prompt.
+  // However, the `drop` event is also triggered by a mail message movement.
+  // So, we use `isFolderDragging` variable to determine the dragged item is folder or mail.
+
+  const ds = dragService.getCurrentSession();
+  const isFolderMovement =
+    ds.dataTransfer.types.indexOf('text/x-moz-folder') !== -1;
+
+  if (isFolderMovement) {
     if (showPrompt) {
-      if (
-        promptService.confirm(
-          null,
-          'Moving folder',
-          'Do you really want to move this folder?'
-        )
-      ) {
+      const approval = promptService.confirm(
+        null,
+        'Moving folder',
+        'Do you really want to move this folder?'
+      );
+      if (approval) {
         event.stopPropagation();
         return;
       }
@@ -77,11 +77,6 @@ this.org_pqrs_disable_dnd_tb_v2 = class extends ExtensionCommon.ExtensionAPI {
                   handleDragStartEvent,
                   true
                 );
-                folderTree.addEventListener(
-                  'dragend',
-                  handleDragEndEvent,
-                  true
-                );
                 folderTree.addEventListener('drop', handleDropEvent, true);
               }
             },
@@ -107,7 +102,6 @@ this.org_pqrs_disable_dnd_tb_v2 = class extends ExtensionCommon.ExtensionAPI {
             handleDragStartEvent,
             true
           );
-          folderTree.removeEventListener('dragend', handleDragEndEvent, true);
           folderTree.removeEventListener('drop', handleDropEvent, true);
         }
       }
