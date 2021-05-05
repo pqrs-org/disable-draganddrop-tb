@@ -1,5 +1,12 @@
 # Changelog
 
+## Disable DragAndDrop 4.11.0
+
+-   📅 Release date
+    -   May 5, 2021
+-   ⚡️ Improvements
+    -   Improved determination of whether the content being dragged is a folder or a message when the approval prompt is enabled.
+
 ## Disable DragAndDrop 4.10.0
 
 -   📅 Release date
