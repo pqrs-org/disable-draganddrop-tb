@@ -3,7 +3,8 @@
   "applications": {
     "gecko": {
       "id": "disable_dnd_tb_v2@pqrs.org",
-      "strict_min_version": "68.0"
+      "strict_min_version": "68.0",
+      "strict_max_version": "92.*"
     }
   },
   "name": "Disable DragAndDrop (Thunderbird)",
