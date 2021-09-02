@@ -9,7 +9,7 @@
   },
   "name": "Disable DragAndDrop (Thunderbird)",
   "description": "Disable drag and drop on the folder tree in order to prevent unintended folder movement.",
-  "version": "4.12.0",
+  "version": "4.13.0",
   "homepage_url": "https://disable-draganddrop-tb.pqrs.org",
   "background": {
     "scripts": ["background-script.js"]
