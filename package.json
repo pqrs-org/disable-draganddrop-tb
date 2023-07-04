@@ -3,7 +3,7 @@
   "scripts": {
     "lint": "eslint src/for_tb_68"
   },
-  "dependencies": {
+  "devDependencies": {
     "eslint": "^8.18.0"
   }
 }
