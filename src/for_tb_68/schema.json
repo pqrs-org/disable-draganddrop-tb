@@ -6,16 +6,6 @@
         "name": "init",
         "type": "function",
         "parameters": []
-      },
-      {
-        "name": "setShowPrompt",
-        "type": "function",
-        "parameters": [
-          {
-            "name": "value",
-            "type": "boolean"
-          }
-        ]
       }
     ]
   }
