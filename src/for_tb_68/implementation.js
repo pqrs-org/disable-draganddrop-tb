@@ -8,6 +8,8 @@ const { ExtensionSupport } = ChromeUtils.import(
 
 const extensionId = 'disable_dnd_tb_v2@pqrs.org';
 
+let updateFolderTreeIntervalID;
+
 const findFolderTree = (window) => {
   // For Thunderbird 115
   for (let browser of window.document.querySelectorAll('browser')) {
@@ -42,16 +44,24 @@ this.org_pqrs_disable_dnd_tb_v2 = class extends ExtensionCommon.ExtensionAPI {
               'chrome://messenger/content/messenger.xul',
             ],
             onLoadWindow(window) {
-              const folderTree = findFolderTree(window);
-              console.log({ folderTree });
+              // Thunderbird 115 takes a while for the folderTree to load, so retry until it is found.
+              updateFolderTreeIntervalID = window.setInterval(() => {
+                const folderTree = findFolderTree(window);
+                console.log({ folderTree });
 
-              if (folderTree !== null) {
-                folderTree.addEventListener(
-                  'dragstart',
-                  handleDragStartEvent,
-                  true
-                );
-              }
+                if (folderTree !== null) {
+                  folderTree.addEventListener(
+                    'dragstart',
+                    handleDragStartEvent,
+                    true
+                  );
+
+                  if (updateFolderTreeIntervalID !== undefined) {
+                    window.clearInterval(updateFolderTreeIntervalID);
+                    updateFolderTreeIntervalID = undefined;
+                  }
+                }
+              }, 1000);
             },
           });
         },
@@ -72,6 +82,11 @@ this.org_pqrs_disable_dnd_tb_v2 = class extends ExtensionCommon.ExtensionAPI {
             handleDragStartEvent,
             true
           );
+        }
+
+        if (updateFolderTreeIntervalID !== undefined) {
+          window.clearInterval(updateFolderTreeIntervalID);
+          updateFolderTreeIntervalID = undefined;
         }
       }
     }
