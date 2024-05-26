@@ -4,6 +4,6 @@
     "lint": "eslint src/for_tb_68"
   },
   "devDependencies": {
-    "eslint": "^8.18.0"
+    "eslint": "^9.3.0"
   }
 }
