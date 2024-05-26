@@ -8,7 +8,7 @@
         "parameters": []
       },
       {
-        "name": "setAllowFolderMovementIfDragStartsWithAlt",
+        "name": "setAllowFolderMovementIfDragStartsWithShiftKey",
         "type": "function",
         "parameters": [
           {

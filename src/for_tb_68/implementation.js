@@ -12,7 +12,7 @@ const extensionId = 'disable_dnd_tb_v2@pqrs.org';
 // Configurations
 //
 
-let allowFolderMovementIfDragStartsWithAlt = false;
+let allowFolderMovementIfDragStartsWithShiftKey = false;
 
 let updateFolderTreeIntervalID;
 
@@ -33,7 +33,7 @@ const findFolderTree = (window) => {
 };
 
 const handleDragStartEvent = (event) => {
-  if (allowFolderMovementIfDragStartsWithAlt && event.altKey) {
+  if (allowFolderMovementIfDragStartsWithShiftKey && event.shiftKey) {
     return;
   }
 
@@ -75,8 +75,8 @@ this.org_pqrs_disable_dnd_tb_v2 = class extends ExtensionCommon.ExtensionAPI {
           });
         },
 
-        setAllowFolderMovementIfDragStartsWithAlt(value) {
-          allowFolderMovementIfDragStartsWithAlt = value;
+        setAllowFolderMovementIfDragStartsWithShiftKey(value) {
+          allowFolderMovementIfDragStartsWithShiftKey = value;
         },
       },
     };

@@ -7,14 +7,24 @@
   <body>
     <div>
       <div style="display: flex; align-items: center">
-        <input id="allowFolderMovementIfDragStartsWithAlt" type="checkbox" />
+        <input
+          id="allowFolderMovementIfDragStartsWithShiftKey"
+          type="checkbox"
+        />
         <label
-          for="allowFolderMovementIfDragStartsWithAlt"
+          for="allowFolderMovementIfDragStartsWithShiftKey"
           style="margin-left: 0.5em"
         >
+          <!--
+            The modifier keys available in the dragstart event are altKey, ctrlKey, metaKey, and shiftKey.
+            However, the shift key is preferable for temporarily allowing folder movement for the following reasons:
+
+  	        - On macOS, control+click acts as a right-click, making it unusable for drag operations.
+	          - On macOS, folder movement is ignored by Thunderbird when the alt key is pressed.
+	          - The metaKey varies between different operating systems, and some environments may not have it.
+          -->
           <div>
-            Allow the folder movement if drag starts with the alt key (option
-            key on macOS) pressed.
+            Allow the folder movement if drag starts with the shift key pressed.
           </div>
           <div>(Default: off)</div>
         </label>
