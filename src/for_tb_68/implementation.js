@@ -47,7 +47,6 @@ this.org_pqrs_disable_dnd_tb_v2 = class extends ExtensionCommon.ExtensionAPI {
               // Thunderbird 115 takes a while for the folderTree to load, so retry until it is found.
               updateFolderTreeIntervalID = window.setInterval(() => {
                 const folderTree = findFolderTree(window);
-                console.log({ folderTree });
 
                 if (folderTree !== null) {
                   folderTree.addEventListener(
