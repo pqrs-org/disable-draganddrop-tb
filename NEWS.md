@@ -1,5 +1,13 @@
 # Changelog
 
+## Disable DragAndDrop 5.1.0
+
+-   📅 Release date
+    -   May 26, 2024
+-   ⚡️ Improvements
+    -   Suppressed the debug log messages.
+    -   Extended the supported Thunderbird versions up to 127.
+
 ## Disable DragAndDrop 5.0.0
 
 -   📅 Release date
