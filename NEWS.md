@@ -5,7 +5,7 @@
 -   📅 Release date
     -   May 26, 2024
 -   ✨ New Features
-    -   Added an option: `Allow the folder movement if drag starts with the shift key pressed.`.
+    -   Added an option: `Allow the folder movement if drag starts with the shift key pressed`.
 -   ⚡️ Improvements
     -   Suppressed the debug log messages.
     -   Extended the supported Thunderbird versions up to 127.
