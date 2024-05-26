@@ -1,10 +1,11 @@
 # Changelog
 
-## Disable DragAndDrop 5.1.0
+## Disable DragAndDrop 5.2.0
 
 -   📅 Release date
     -   May 26, 2024
 -   ⚡️ Improvements
+    -   Add an option: `Allow the folder movement if drag starts with the alt key (option key on macOS) pressed.`.
     -   Suppressed the debug log messages.
     -   Extended the supported Thunderbird versions up to 127.
 
