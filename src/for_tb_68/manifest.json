@@ -23,5 +23,9 @@
         "script": "implementation.js"
       }
     }
+  },
+  "permissions": ["storage"],
+  "options_ui": {
+    "page": "options/options.html"
   }
 }

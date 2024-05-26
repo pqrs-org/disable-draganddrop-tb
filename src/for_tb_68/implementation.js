@@ -8,6 +8,12 @@ const { ExtensionSupport } = ChromeUtils.import(
 
 const extensionId = 'disable_dnd_tb_v2@pqrs.org';
 
+//
+// Configurations
+//
+
+let allowFolderMovementIfDragStartsWithAlt = false;
+
 let updateFolderTreeIntervalID;
 
 const findFolderTree = (window) => {
@@ -27,6 +33,10 @@ const findFolderTree = (window) => {
 };
 
 const handleDragStartEvent = (event) => {
+  if (allowFolderMovementIfDragStartsWithAlt && event.altKey) {
+    return;
+  }
+
   event.stopPropagation();
   return;
 };
@@ -63,6 +73,10 @@ this.org_pqrs_disable_dnd_tb_v2 = class extends ExtensionCommon.ExtensionAPI {
               }, 1000);
             },
           });
+        },
+
+        setAllowFolderMovementIfDragStartsWithAlt(value) {
+          allowFolderMovementIfDragStartsWithAlt = value;
         },
       },
     };

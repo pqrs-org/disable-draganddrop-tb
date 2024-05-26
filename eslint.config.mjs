@@ -6,6 +6,8 @@ export default [
     languageOptions: {
       globals: {
         browser: 'readonly',
+        // console: 'readonly',
+        document: 'readonly',
         ChromeUtils: 'readonly',
         Components: 'readonly',
       },
