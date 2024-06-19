@@ -7,7 +7,8 @@ const { ExtensionSupport } = ChromeUtils.import(
 );
 
 const extensionId = 'disable_dnd_tb_v2@pqrs.org';
-const datakey = 'disableDndTbV2.pqrs.org';
+const registeredDatasetKey = 'registered.disableDndTbV2.pqrs.org';
+const browserIdDatasetKey = 'browserId.disableDndTbV2.pqrs.org';
 
 //
 // Configurations
@@ -25,14 +26,23 @@ const findFolderTrees = (window) => {
     if (browser.contentWindow !== null) {
       const folderTree =
         browser.contentWindow.document.getElementById('folderTree');
-      folderTrees.push(folderTree);
+      if (folderTree != null) {
+        folderTree.dataset[browserIdDatasetKey] = browser.id;
+        folderTrees.push(folderTree);
+      }
     }
   }
 
   // For Thunderbird 102
-  folderTrees.push(window.document.getElementById('folderTree'));
+  {
+    const folderTree = window.document.getElementById('folderTree');
+    if (folderTree != null) {
+      folderTree.dataset[browserIdDatasetKey] = '';
+      folderTrees.push(folderTree);
+    }
+  }
 
-  return folderTrees.filter((t) => !!t);
+  return folderTrees;
 };
 
 const handleDragStartEvent = (event) => {
@@ -62,12 +72,11 @@ this.org_pqrs_disable_dnd_tb_v2 = class extends ExtensionCommon.ExtensionAPI {
               // - We also need to handle newly opened tabs.
               updateFolderTreeIntervalID = window.setInterval(() => {
                 findFolderTrees(window).forEach((folderTree) => {
-                  if (!folderTree.dataset[datakey]) {
-                    folderTree.dataset[datakey] = true;
+                  if (!folderTree.dataset[registeredDatasetKey]) {
+                    folderTree.dataset[registeredDatasetKey] = true;
 
                     console.log(
-                      'disable_dnd_tb_v2 folderTree.addEventListener',
-                      folderTree
+                      `disable_dnd_tb_v2 folderTree.addEventListener ${folderTree.dataset[browserIdDatasetKey]}`
                     );
                     folderTree.addEventListener(
                       'dragstart',
@@ -95,11 +104,10 @@ this.org_pqrs_disable_dnd_tb_v2 = class extends ExtensionCommon.ExtensionAPI {
         window.location.href === 'chrome://messenger/content/messenger.xul'
       ) {
         findFolderTrees(window).forEach((folderTree) => {
-          delete folderTree.dataset[datakey];
+          delete folderTree.dataset[registeredDatasetKey];
 
           console.log(
-            'disable_dnd_tb_v2 folderTree.removeEventListener',
-            folderTree
+            `disable_dnd_tb_v2 folderTree.removeEventListener ${folderTree.dataset[browserIdDatasetKey]}`
           );
           folderTree.removeEventListener(
             'dragstart',
