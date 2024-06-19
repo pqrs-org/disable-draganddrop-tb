@@ -1,5 +1,12 @@
 # Changelog
 
+## Disable DragAndDrop 5.3.0
+
+-   📅 Release date
+    -   Jun 19, 2024
+-   🐛 Bug Fixes
+    -   Fixed an issue where drag was not disabled in newly opened tabs. (Thanks to @kudel)
+
 ## Disable DragAndDrop 5.2.0
 
 -   📅 Release date
