@@ -1,5 +1,12 @@
 # Changelog
 
+## Disable DragAndDrop 5.4.0
+
+-   📅 Release date
+    -   Jul 31, 2024
+-   ⚡️ Improvements
+    -   Remove `strict_max_version` from manifest.json.
+
 ## Disable DragAndDrop 5.3.0
 
 -   📅 Release date
