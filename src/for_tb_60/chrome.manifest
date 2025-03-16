@@ -1,2 +1,0 @@
-content disable_dnd_tb chrome/content/
-overlay chrome://messenger/content/messenger.xul chrome://disable_dnd_tb/content/overlay.xul
