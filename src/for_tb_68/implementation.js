@@ -1,9 +1,9 @@
-const { ExtensionCommon } = ChromeUtils.import(
-  'resource://gre/modules/ExtensionCommon.jsm'
+const { ExtensionCommon } = ChromeUtils.importESModule(
+  'resource://gre/modules/ExtensionCommon.sys.mjs'
 );
 
-const { ExtensionSupport } = ChromeUtils.import(
-  'resource:///modules/ExtensionSupport.jsm'
+const { ExtensionSupport } = ChromeUtils.importESModule(
+  'resource://gre/modules/ExtensionSupport.sys.mjs'
 );
 
 const extensionId = 'disable_dnd_tb_v2@pqrs.org';
