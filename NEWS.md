@@ -1,5 +1,12 @@
 # Changelog
 
+## Disable DragAndDrop 6.4.0
+
+-   📅 Release date
+    -   Aug 24, 2025
+-   ⚡️ Improvements
+    -   Extended the supported Thunderbird versions up to 144.
+
 ## Disable DragAndDrop 6.3.0
 
 -   📅 Release date
