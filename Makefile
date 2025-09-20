@@ -5,8 +5,17 @@ all: lint
 	rm -f xpi/disable_dnd_tb-$(VERSION).xpi
 	(cd src && zip -r ../xpi/disable_dnd_tb-$(VERSION).xpi *)
 
+install:
+	pnpm install
+
+update:
+	pnpm update
+
+audit:
+	pnpm audit
+
 lint:
-	npm run lint
+	pnpm run lint
 
 clean-xpi:
 	git reset xpi
