@@ -1,5 +1,9 @@
 # Changelog
 
+Support updates for Thunderbird 150 and later will be handled by updating the metadata at
+<https://addons.thunderbird.net/en-US/thunderbird/addon/disable-draganddrop-tb-v2/>.
+So new versions won't necessarily be released each time.
+
 ## Disable DragAndDrop 6.9.0
 
 - 📅 Release date
