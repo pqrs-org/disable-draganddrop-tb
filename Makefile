@@ -6,7 +6,7 @@ all: lint
 	(cd src && zip -r ../xpi/disable_dnd_tb-$(VERSION).xpi *)
 
 install:
-	pnpm install
+	pnpm install --frozen-lockfile
 
 update:
 	pnpm update
