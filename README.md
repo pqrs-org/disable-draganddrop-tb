@@ -9,7 +9,7 @@ A Thunderbird add-on which disables drag and drop on the folder tree in order to
 ## How to build
 
 ```shell
-npm install
+pnpm install --frozen-lockfile
 make
 ```
 
